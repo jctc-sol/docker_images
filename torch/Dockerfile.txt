@@ -1,0 +1,29 @@
+# -----------------------------------------------------------------
+# compiler image
+# -----------------------------------------------------------------
+FROM jctc/ds-base:base AS compile-image
+
+# run python in virtualenv
+RUN python -m venv /opt/venv
+# make sure we use the virtualenv:
+ENV PATH="/opt/venv/bin:$PATH"
+
+# use layer caching to ensure requirements.txt does not become stale
+COPY requirements.txt .
+RUN pip install --no-cache-dir --upgrade pip \  
+    && pip install -r requirements.txt
+
+
+# -----------------------------------------------------------------
+# build image
+# -----------------------------------------------------------------
+FROM jctc/ds-base:base AS build-image
+
+# copy files compiled in compile-image over
+COPY --from=compile-image /opt/venv /opt/venv
+
+# make sure we use the virtualenv:
+ENV PATH="/opt/venv/bin:$PATH"
+
+# Run app.py when the container launches
+CMD ["jupyter", "notebook", "--ip=0.0.0.0", "--port=8888", "--no-browser", "--allow-root"]
