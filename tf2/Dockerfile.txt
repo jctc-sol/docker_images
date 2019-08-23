@@ -1,7 +1,7 @@
 # -----------------------------------------------------------------
 # compiler image
 # -----------------------------------------------------------------
-FROM jctc/ds-base:base AS compile-image
+FROM jctc/ds-base:latest AS compile-image
 
 # run python in virtualenv
 RUN python -m venv /opt/venv
@@ -17,7 +17,7 @@ RUN pip install --no-cache-dir --upgrade pip \
 # -----------------------------------------------------------------
 # build image
 # -----------------------------------------------------------------
-FROM jctc/ds-base:base AS build-image
+FROM jctc/ds-base:latest AS build-image
 
 # copy files compiled in compile-image over
 COPY --from=compile-image /opt/venv /opt/venv

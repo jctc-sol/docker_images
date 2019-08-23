@@ -2,8 +2,9 @@
 # compiler image
 # -----------------------------------------------------------------
 FROM python:3.7-slim AS compile-image
-RUN apt-get update
-RUN apt-get install -y --no-install-recommends build-essential gcc
+
+RUN apt-get update \
+ && apt-get install -y --no-install-recommends build-essential gcc
 
 # install python in virtualenv
 RUN python -m venv /opt/venv
@@ -21,6 +22,9 @@ RUN pip install --upgrade pip \
 # build image
 # -----------------------------------------------------------------
 FROM python:3.7-slim AS build-image
+
+RUN apt-get update \
+    && apt-get install vim -y
 
 # copy files compiled in compile-image over
 COPY --from=compile-image /opt/venv /opt/venv
