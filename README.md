@@ -14,6 +14,9 @@ Builds a base docker image with Jupyter + basic datascience packages, including:
 	- scikit-image>=0.15.0
 	- feather-format>=0.4.0
 	- pillow>=6.1.0
+	- python-snappy
+	- avro-python3>=1.9.0
+	- fastavro
 
 The images exposes ports 8888 (for Jupyter) and 6006 (for Tensorboard) and mounts volume /projects.
 
