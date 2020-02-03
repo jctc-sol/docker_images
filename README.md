@@ -19,3 +19,4 @@ docker exec [ContainerName] jupyter notebook list
 ```
 
 Grab the token as displayed in the terminal and login via `localhost://8000` (if you mapped 8000 locally to 8888 as instructed above)
+
