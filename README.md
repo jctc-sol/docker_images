@@ -1,8 +1,4 @@
-# Images
-
-The docker image files for various workflows are provided in this repo:
-
-### base: 
+## Base JupyterNotebook + basic Data Science (Python) stack: 
 Builds a base docker image with Jupyter + basic datascience packages, including:
 	- tqdm>=4.32.1
 	- numpy>=1.16.3
