@@ -1,23 +1,9 @@
-## Base JupyterNotebook + basic Data Science (Python) stack: 
-Builds a base docker image with Jupyter + basic datascience packages, including:
-	- tqdm>=4.32.1
-	- numpy>=1.16.3
-	- scipy>=1.3.0
-	- pandas>=0.24.2
-	- seaborn>=0.9.0
-	- matplotlib>=3.1.0
-	- scikit-learn>=0.21.2
-	- scikit-image>=0.15.0
-	- feather-format>=0.4.0
-	- pillow>=6.1.0
-	- python-snappy
-	- avro-python3>=1.9.0
-	- fastavro
-
-The images exposes ports 8888 (for Jupyter) and 6006 (for Tensorboard) and mounts volume /projects.
+## Summary
+Builds a base docker image with Jupyter + basic datascience packages. See requirements.txt for list of libraries included.
+This image exposes ports 8888 (for Jupyter) and 6006 (for Tensorboard) and mounts volume /projects.
 
 
-# Docker Commands
+## Basic Docker Commands
 
 Basic docker commands to build, push, you docker image and start your docker container.
 
