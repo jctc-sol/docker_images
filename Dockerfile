@@ -26,7 +26,7 @@ FROM python:3.7-slim AS build-image
 
 RUN apt-get update \
  && apt-get install -y gcc g++ libsnappy-dev \
- && apt-get install vim -y
+ && apt-get install -y vim git-all
 
 # copy files compiled in compile-image over
 COPY --from=compile-image /opt/venv /opt/venv
