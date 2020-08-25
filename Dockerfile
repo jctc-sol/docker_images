@@ -11,7 +11,8 @@ ENV PATH="/opt/venv/bin:$PATH"
 # use layer caching to ensure requirements.txt does not become stale
 COPY requirements.txt .
 RUN pip install --no-cache-dir --upgrade pip \  
-    && pip install -r requirements.txt
+    && pip install -r requirements.txt \
+    && pip install fastai
 
 
 # -----------------------------------------------------------------
