@@ -12,7 +12,7 @@ ENV PATH="/opt/venv/bin:$PATH"
 COPY requirements.txt .
 RUN pip install --no-cache-dir --upgrade pip \  
     && pip install -r requirements.txt \
-    && pip install fastai
+    && pip install fastai2
 
 
 # -----------------------------------------------------------------
