@@ -19,6 +19,13 @@ RUN jupyter notebook --generate-config --allow-root
 RUN pip -q install torch==1.8.1+cu111 torchvision==0.9.1+cu111 torchaudio==0.8.1 -f https://download.pytorch.org/whl/torch_stable.html \
  && pip -q install tensorboard
 
+# scripts & requirements
+COPY ./start.sh /
+COPY ./requirements.txt /
+
+RUN apt-get update && apt-get install -y gcc g++ libsnappy-dev
+RUN pip -q install -r requirements.txt
+
 # allocate port 8888 for Jupyter Notebook
 # allocate port 6006 for tensorboard
 EXPOSE 8888 6006
@@ -29,7 +36,6 @@ VOLUME /projects
 # set cwd
 WORKDIR /projects
 
-# Run startup scripts
-COPY ./start.sh /
+# run start script
 RUN chmod +x /start.sh
 CMD ["/start.sh"]
