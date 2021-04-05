@@ -1,30 +1,18 @@
-# Leverage NVIDIA pre-built docker containers with CUDA & CuDNN
-FROM nvidia/cuda:11.2.2-cudnn8-runtime-ubuntu18.04
+# Leverage nvcr.io pre-built docker containers
+FROM nvcr.io/nvidia/pytorch:21.03-py3 
 
 RUN apt-get update && apt-get install --no-install-recommends --no-install-suggests -y curl \
  && apt-get update && apt-get install -y apt-utils unzip wget
 
-# Install anaconda along with all other data science libraries
-RUN wget https://repo.continuum.io/archive/Anaconda3-2020.02-Linux-x86_64.sh \
- && bash Anaconda3-2020.02-Linux-x86_64.sh -b \
- && rm Anaconda3-2020.02-Linux-x86_64.sh
-
-# Set path to conda
-ENV PATH /root/anaconda3/bin:$PATH
-
 # configure access to Jupyter
 RUN jupyter notebook --generate-config --allow-root
 
-# install pytorch with cuda & tensorboard
-RUN pip -q install torch==1.8.1+cu111 torchvision==0.9.1+cu111 torchaudio==0.8.1 -f https://download.pytorch.org/whl/torch_stable.html \
- && pip -q install tensorboard
-
-# scripts & requirements
+# # copy over scripts & requirements
 COPY ./start.sh /
 COPY ./requirements.txt /
 
-RUN apt-get update && apt-get install -y gcc g++ libsnappy-dev
-RUN pip -q install -r requirements.txt
+RUN apt-get update && apt-get install
+RUN pip -q install -r /requirements.txt
 
 # allocate port 8888 for Jupyter Notebook
 # allocate port 6006 for tensorboard

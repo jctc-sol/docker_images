@@ -1,1 +1,1 @@
-pycocotools
+ipywidgets
