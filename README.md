@@ -52,7 +52,9 @@ sudo reboot
 ## Docker & Nvidia Container Toolkit Installation
 ---
 1. install Docker-CE
-`curl https://get.docker.com | sh && sudo systemctl --now enable docker`
+```
+curl https://get.docker.com | sh && sudo systemctl --now enable docker
+```
 
 2. setup NVIDIA container toolkit
 ```
@@ -65,7 +67,9 @@ sudo systemctl restart docker
 ```
 
 3. test CUDA container (result should show similar output as running `nvidia-smi` command locally)
-`sudo docker run --rm --gpus nvidia/cuda:11.0-base nvidia-smi`
+```
+sudo docker run --rm --gpus nvidia/cuda:11.0-base nvidia-smi
+```
 
 (Source: https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/install-guide.html#installing-on-ubuntu-and-debian)
 
